@@ -2,3 +2,4 @@
 # Not: torch kurulumu platforma göre değişir; gerekirse aşağıdaki satırı özelleştirin.
 torch>=2.1.0
 openai-whisper>=20231117
+streamlit
