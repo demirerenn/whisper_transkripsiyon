@@ -1,0 +1,1404 @@
+1
+00:00:00,000 --> 00:00:04,880
+Merhabalar, bugün yapay zeka üzerine derinlemesine bir sohbete dalıyoruz.
+
+2
+00:00:05,200 --> 00:00:09,800
+Şey, yapay zeka modelleriyle konuşurken bazen verdikleri cevapların
+
+3
+00:00:10,000 --> 00:00:13,040
+hani, tuhaflığı dikkatinizi çekti mi sizin de?
+
+4
+00:00:13,240 --> 00:00:14,680
+Evet, evet, kesinlikle.
+
+5
+00:00:14,960 --> 00:00:17,120
+Bazen ısrarla yanlış bilgi veriyorlar
+
+6
+00:00:17,360 --> 00:00:21,840
+ya da çok basit bir soruyu bile akla mantağa sığmayacak şekilde yanıtlayabiliyorlar.
+
+7
+00:00:22,160 --> 00:00:23,520
+Aynen öyle. Mesela,
+
+8
+00:00:23,720 --> 00:00:25,800
+birinin doğum gününü soruyorsunuz,
+
+9
+00:00:25,800 --> 00:00:29,200
+size üç farklı, hem de tamamen yanlış tarih söylüyor.
+
+10
+00:00:29,400 --> 00:00:33,440
+Ya da ne bileyim, bir kelimedeki harf sayısını bir türlü doğru sayamıyor.
+
+11
+00:00:33,720 --> 00:00:36,800
+İşte bu durumu araştırmacılar, halüsinasyon diyorlar.
+
+12
+00:00:37,040 --> 00:00:39,880
+Ama hemen belirtelim, bu bizim bildiğimiz anlamda,
+
+13
+00:00:39,880 --> 00:00:45,120
+hani insanlardaki görsel veya eşitsel halüsinasyonlardan çok farklı bir kavrama aslında.
+
+14
+00:00:45,240 --> 00:00:46,080
+Kesinlikle.
+
+15
+00:00:46,320 --> 00:00:48,800
+Bugün de tam olarak bu konuyu ele alacağız.
+
+16
+00:00:49,040 --> 00:00:55,000
+Neden en gelişmiş, hani milyarlarca veriyle eğitilmiş yapay zeka dil modelleri bile
+
+17
+00:00:55,200 --> 00:01:00,240
+Kulağa son derece makul gelen ama aslında tamamen yanlış ifadeler üretiyor.
+
+18
+00:01:00,240 --> 00:01:01,720
+Bunu anlamaya çalışacağız.
+
+19
+00:01:01,720 --> 00:01:09,200
+Elimizdeki temel kaynakta Adam Talman Kalay'ı ve OpenAI'la Georgia Tech'teki meslektaşlarının
+
+20
+00:01:09,200 --> 00:01:15,040
+bu konuda daha çok yeni, Eylül 2025 tarihli, oldukça kapsamlı bir araştırması.
+
+21
+00:01:15,360 --> 00:01:17,480
+Çalışma bu halüsinasyonların,
+
+22
+00:01:17,480 --> 00:01:22,760
+istatistiksel kökenlerine ve modern eğitim süreçlerindeki yerine odaklanıyor.
+
+23
+00:01:23,120 --> 00:01:25,080
+Bayağı derinlemesine bir analiz.
+
+24
+00:01:25,360 --> 00:01:26,040
+Harika.
+
+25
+00:01:26,040 --> 00:01:30,800
+Bu sohbetimizdeki amacımızda sizin için bu kafa karıştırıcı görünen durumun,
+
+26
+00:01:30,920 --> 00:01:35,800
+yani yapay zeka halüsinasyonlarının neden hem ilk eğitimde,
+
+27
+00:01:35,800 --> 00:01:39,400
+yani ön eğitim dediğimiz aşamada ortaya çıktığını anlamak
+
+28
+00:01:39,400 --> 00:01:43,560
+ve sonra da hani iyileştirme ve ince ayar yapılıyor ya modellere,
+
+29
+00:01:43,640 --> 00:01:48,760
+post training dediğimiz süreçlerde neden inatla devam ettiğini ortaya koymak.
+
+30
+00:01:48,920 --> 00:01:54,600
+Tabii bir de bu soruna yönelik olası çözüm önerileri neler olabilir onlara da bir göz atacağız.
+
+31
+00:01:54,600 --> 00:01:56,600
+O zaman hemen başlayalım istersen.
+
+32
+00:01:56,800 --> 00:02:00,160
+Bu halüsinasyon dediğimiz şey tam olarak ne anlama geliyor?
+
+33
+00:02:00,400 --> 00:02:03,600
+Makaledeki örnekler bence konuyu anlamak için çok iyi.
+
+34
+00:02:03,720 --> 00:02:04,760
+Gerçekten öyle.
+
+35
+00:02:04,760 --> 00:02:10,120
+Mesela makalenin yazarlarından Adam Kalei'nin doğum günü sorulmuş modele,
+
+36
+00:02:10,240 --> 00:02:13,160
+model ısrarla üç farklı yanlış tarih vermiş.
+
+37
+00:02:13,160 --> 00:02:17,800
+03, 07, 1506 ve 0101.
+
+38
+00:02:17,840 --> 00:02:23,080
+Üstelik modele şey denmiş hani sadece biliyorsan eminsen cevap ver denmiş, ona rağmen.
+
+39
+00:02:23,080 --> 00:02:28,440
+Ona rağmen işin daha da ilginci doğru tarih aslında sonbahardaymış.
+
+40
+00:02:28,600 --> 00:02:31,440
+Yani verdiği tarihlerin hiç alakası yok.
+
+41
+00:02:31,440 --> 00:02:34,120
+Ve yani başka bir örnek var o da çok çarpıcı.
+
+42
+00:02:34,320 --> 00:02:36,920
+Kalei'nin doktora tezinin başlığı sorulmuş.
+
+43
+00:02:37,440 --> 00:02:41,640
+Chet GPT, Deep Seek, Lama gibi farklı popüler modeller var ya.
+
+44
+00:02:41,640 --> 00:02:42,920
+Evet evet biliyoruz.
+
+45
+00:02:43,240 --> 00:02:47,920
+Hepsi hem başlığı hem de tez yılını tamamen yanlış vermiş.
+
+46
+00:02:47,920 --> 00:02:49,360
+Yani uydurmuş resmen.
+
+47
+00:02:49,560 --> 00:02:52,160
+Makale bu durumu çok güzel bir ifadeyle tanımlıyor.
+
+48
+00:02:52,400 --> 00:02:55,360
+Aşırı özgüvenli, akla yatkın yanlışlıklar.
+
+49
+00:02:55,360 --> 00:02:58,560
+Aşırı özgüvenli, akla yatkın yanlışlıklar.
+
+50
+00:02:58,760 --> 00:03:06,960
+Yani model kendinden o kadar emin ki size sanki doğru bir şey söylüyormuş gibi geliyor ama aslında tamamen yanlış.
+
+51
+00:03:07,080 --> 00:03:07,840
+Aynen öyle.
+
+52
+00:03:07,880 --> 00:03:15,600
+İşte bu insanın dünyayı algılarken yaşadığı o algısal halüsinasyonlardan temelden farklı bir mekanizma.
+
+53
+00:03:15,920 --> 00:03:22,120
+Ve bu çok önemli bir sorun çünkü bu tür hatalar modellerin kullanışlılığını ciddi şekilde düşürüyor.
+
+54
+00:03:22,120 --> 00:03:24,400
+E tabii güveni de sarsıyor doğal olarak.
+
+55
+00:03:24,400 --> 00:03:27,000
+Kesinlikle güveni temelden sarsıyor.
+
+56
+00:03:27,000 --> 00:03:31,040
+Yani olay sadece rastgele kelimeleri yan yana getirme değil,
+
+57
+00:03:31,040 --> 00:03:35,280
+bilinçli gibi duran inandırıcı yalanlar üretme durumu var ortada.
+
+58
+00:03:35,800 --> 00:03:39,200
+Peki makale bu halüsinasyonları sınıflandırıyor mu?
+
+59
+00:03:39,200 --> 00:03:40,800
+Hani farklı türleri var mı?
+
+60
+00:03:40,800 --> 00:03:41,320
+Evet.
+
+61
+00:03:41,320 --> 00:03:43,440
+İki ana türden bahsediyorlar.
+
+62
+00:03:43,440 --> 00:03:48,000
+Birincisi içsel halüsinasyonlar yani intrensik diyorlar.
+
+63
+00:03:48,000 --> 00:03:55,280
+Bunlar modelin verdiği cevabın sizin sorduğunuz soruyla veya verdiğiniz talimatla çeliştiği durumlar.
+
+64
+00:03:55,280 --> 00:03:57,360
+Hı. Örnek verebilir misin?
+
+65
+00:03:57,360 --> 00:04:02,200
+Mesela Deep Seek kelimesinde kaç tane D harfi vardır diye soruyorsunuz.
+
+66
+00:04:02,200 --> 00:04:04,000
+Cevap çok basit bir tane.
+
+67
+00:04:04,000 --> 00:04:06,880
+Ama model ısrarla iki diyor, üç diyor.
+
+68
+00:04:06,880 --> 00:04:10,120
+Hatta bazen abartıp altı veya yedi diyebiliyor.
+
+69
+00:04:10,120 --> 00:04:12,440
+İşte bu içsel bir çelişki.
+
+70
+00:04:12,440 --> 00:04:15,120
+Anladım kendi içinde tutarsız yani.
+
+71
+00:04:15,120 --> 00:04:15,920
+Aynen.
+
+72
+00:04:15,920 --> 00:04:20,320
+İkincisi ise dışsal halüsinasyonlar yani extrensik.
+
+73
+00:04:20,320 --> 00:04:28,360
+Bunlar da modelin verdiği cevabın eğitim verisindeki bilgilerle veya daha genel olarak dış dünyadaki gerçeklerle çeliştiği durumlar.
+
+74
+00:04:28,560 --> 00:04:34,400
+İşte o bahsettiğimiz doğum günü veya tez başlığı örnekleri tam olarak bu kategori o zaman.
+
+75
+00:04:34,400 --> 00:04:38,040
+Kesinlikle o örnekler tam da dışsal halüsinasyon.
+
+76
+00:04:38,040 --> 00:04:43,840
+Makaledeki teori de zaten her iki tür halüsinasyonun kökenine birlikte ışık tutmaya amaçlıyor.
+
+77
+00:04:43,840 --> 00:04:45,600
+Tamam burası önemliydi.
+
+78
+00:04:45,600 --> 00:04:50,120
+Şimdi asıl merak ettiğim kısma yani işin nedenine gelelim.
+
+79
+00:04:50,120 --> 00:04:54,240
+Makalenin bence en kafa karıştırıcı iddialarından biri şu.
+
+80
+00:04:54,400 --> 00:05:00,800
+Bu halüsinasyonlar sadece modelin eksik ya da hatalı verilerle eğitilmesinden kaynaklanmıyormuş.
+
+81
+00:05:00,800 --> 00:05:02,600
+Evet bu çok çarpıcı.
+
+82
+00:05:02,600 --> 00:05:11,760
+Araştırmacılar diyor ki modeller kusursuz yani tamamen hatasız verilerle eğitilseler bile yine de halüsinasyon üretebilirler.
+
+83
+00:05:11,760 --> 00:05:12,880
+Ya bu nasıl olabilir?
+
+84
+00:05:12,880 --> 00:05:15,560
+Yani kulağa hiç mantıklı gelmiyor ilk başta.
+
+85
+00:05:15,560 --> 00:05:19,840
+Evet gerçekten de ilk duyuşta insanın sezgilerine aykırı geliyor.
+
+86
+00:05:19,840 --> 00:05:27,040
+Ama temel sebep o ön eğitim dediğimiz hani modelin ilk ve en temel eğitim aşamasının doğasında yatıyor.
+
+87
+00:05:27,040 --> 00:05:29,000
+Bu aşamada modeller ne yapıyor?
+
+88
+00:05:29,000 --> 00:05:33,680
+İnternetten toplanmış devasa metin yığınlarındaki dil kalıplarını öğreniyorlar.
+
+89
+00:05:33,680 --> 00:05:37,080
+Kelimeler nasıl yan yana gelir, cümleler nasıl kurulur?
+
+90
+00:05:37,080 --> 00:05:39,640
+Dilin istatistiğini öğreniyor yani.
+
+91
+00:05:39,640 --> 00:05:43,040
+Tam olarak öyle, dilin istatistiğini öğreniyorlar.
+
+92
+00:05:43,120 --> 00:05:52,840
+Ama bunu yaparken aslında otomize ettikleri hedef fonksiyonları yani matematiksel hedefler belirsizlikle karşılaştıklarında tahmin yapmalarını ödüllendiriyor.
+
+93
+00:05:52,840 --> 00:05:55,920
+Makale bunu çok güzel bir benzetmeyle açıklıyor.
+
+94
+00:05:55,920 --> 00:05:58,880
+Bir tür ikili sınıflandırma problemine benzetiyor.
+
+95
+00:05:58,880 --> 00:06:00,800
+İkili sınıflandırma derken?
+
+96
+00:06:00,800 --> 00:06:02,040
+Şöyle düşünebiliriz.
+
+97
+00:06:02,040 --> 00:06:05,200
+Modele sanki arka planda sürekli şu soru soruluyor.
+
+98
+00:06:05,200 --> 00:06:09,640
+Üretmek üzere olduğum bu ifade geçerli bir ifade mi değil mi?
+
+99
+00:06:09,640 --> 00:06:11,480
+Yani bir bu geçerli mi?
+
+100
+00:06:11,480 --> 00:06:14,720
+Hz. Valid, IV kontrolü yapıyor kendi kendine.
+
+101
+00:06:14,720 --> 00:06:23,600
+Yani bir sonraki kelimeyi veya cümleyi üretmeden önce bu mantıklı mı, bu geçerli bir devam mı diye bir iç kontrol gibi mi?
+
+102
+00:06:23,600 --> 00:06:24,280
+Aynen öyle.
+
+103
+00:06:24,280 --> 00:06:26,320
+Kavramsal olarak böyle düşünebiliriz.
+
+104
+00:06:26,320 --> 00:06:29,600
+İşte makalenin ortaya koyduğu kritik bağlantı da burada.
+
+105
+00:06:29,600 --> 00:06:34,840
+Bir modelin hatalı yani halüsinasyon içeren bir çıktı üretme olasılığı ile
+
+106
+00:06:34,840 --> 00:06:41,960
+bu içsel geçerli mi sorusunu yanlış sınıflandırma olasılığı arasında doğrudan matematiksel bir ilişki kuruyorlar.
+
+107
+00:06:41,960 --> 00:06:43,000
+İlginç.
+
+108
+00:06:43,000 --> 00:06:45,000
+Yani basitçe şunu söylüyorlar.
+
+109
+00:06:45,000 --> 00:06:50,200
+Eğer model geçersiz bir ifadeyi geçerli bir ifadeden ayırt etmekte zorlanıyorsa,
+
+110
+00:06:50,200 --> 00:06:53,920
+yani bu içsel geçerli mi kontrolüne sık sık hata yapıyorsa,
+
+111
+00:06:53,920 --> 00:07:00,960
+o zaman istatistiksel olarak hatalı çıktılar üretmesi yani halüsinasyon görmesi çok daha muhtemel hale geliyor.
+
+112
+00:07:00,960 --> 00:07:03,480
+Formülüne girmeyelim ama temel mantık bu.
+
+113
+00:07:03,480 --> 00:07:05,320
+İki hata türü birbirine bağlı.
+
+114
+00:07:05,320 --> 00:07:05,880
+Anladım.
+
+115
+00:07:05,880 --> 00:07:10,520
+Peki, modeli bu geçerli mi ayrımını yapmakta zorlayan ne?
+
+116
+00:07:10,520 --> 00:07:15,160
+Neden bu kontrol mekanizması hata yapıyor da halüsinasyonlar ortaya çıkıyor?
+
+117
+00:07:15,200 --> 00:07:20,560
+İşte burada karşımıza aslında standart makine öğrenmesi sınıflandırma problemlerinde
+
+118
+00:07:20,560 --> 00:07:24,840
+hata yapmaya neden olan faktörlere çok benzeyen şeyler çıkıyor.
+
+119
+00:07:24,840 --> 00:07:27,520
+Makale birkaç ana başlıkta topluyor bunları.
+
+120
+00:07:27,520 --> 00:07:28,560
+Nedir onlar?
+
+121
+00:07:28,560 --> 00:07:31,640
+Birincisi, keyfî gerçekler dedikleri durum.
+
+122
+00:07:31,640 --> 00:07:34,920
+Ya da teknik adıyla epistemik belirsizlik.
+
+123
+00:07:34,920 --> 00:07:40,280
+Bu, veride öğrenecek net bir örüntü, bir kural olmadığında ortaya çıkıyor.
+
+124
+00:07:40,280 --> 00:07:42,720
+Doğum günleri bunun en klasik örneği.
+
+125
+00:07:42,720 --> 00:07:49,000
+Düşünün, devasa bir veri setinde belirli bir kişinin doğum günü bilgisi kaç kere geçer ki?
+
+126
+00:07:49,000 --> 00:07:51,640
+Belki sadece bir veya birkaç kez.
+
+127
+00:07:51,640 --> 00:07:52,800
+Çok nadir yani.
+
+128
+00:07:52,800 --> 00:07:55,920
+Aynen, çok nadir ve keyfî bir bilgi.
+
+129
+00:07:55,920 --> 00:08:01,000
+Makale bunu Singleton Rate, yani tekil örnek oranı ile ilişkilendiriyor.
+
+130
+00:08:01,000 --> 00:08:06,320
+Eğer bir bilgi, diyelim ki Ahmet'in doğum günü, o milyarlarca kelimelik eğitim verisinde
+
+131
+00:08:06,320 --> 00:08:11,440
+sadece tek bir yerde geçiyorsa, modelin bu konuda halüsinasyon üretme olasılığının
+
+132
+00:08:11,480 --> 00:08:16,120
+istatistiksel olarak belirli bir oranın altına düşmesi neredeyse imkansız hale geliyor.
+
+133
+00:08:16,120 --> 00:08:19,840
+Good Turing tahmincisi diye bir prensibe dayandırıyorlar bunu.
+
+134
+00:08:19,840 --> 00:08:25,400
+Yani veri ne kadar az ve keyfi ise, modelin uydurma ihtimali o kadar artıyor.
+
+135
+00:08:25,400 --> 00:08:26,240
+Anladım.
+
+136
+00:08:26,240 --> 00:08:30,280
+Yani bilgi ne kadar nadir ve belirgin bir kalıba oturmuyorsa,
+
+137
+00:08:30,280 --> 00:08:34,080
+modelin onu doğru hatırlaması veya tahmin etmesi zorlaşıyor.
+
+138
+00:08:34,080 --> 00:08:37,400
+Boşluğu doldurmak için de halüsinasyona başvurabiliyor.
+
+139
+00:08:37,400 --> 00:08:38,560
+Mantıklı geldi.
+
+140
+00:08:38,560 --> 00:08:40,080
+Peki başka ne var?
+
+141
+00:08:40,120 --> 00:08:42,680
+İkinci önemli faktör yetersiz model.
+
+142
+00:08:42,680 --> 00:08:44,880
+Yani Poor Models diyorlar.
+
+143
+00:08:44,880 --> 00:08:49,480
+Bazen de sorun verinin kendisinde değil, modelin kapasitesinde oluyor.
+
+144
+00:08:49,480 --> 00:08:52,960
+Yani modelin mimarisi veya öğrenme yeteneği,
+
+145
+00:08:52,960 --> 00:08:57,280
+çözmesi beklenen görevin karmaşıklığını tam olarak yakalamaya yetmiyor.
+
+146
+00:08:58,280 --> 00:09:01,480
+Makaledeki o harf sayma örneği bunu çok güzel açıklıyor.
+
+147
+00:09:01,480 --> 00:09:05,240
+Hani Deep Seek modelinin eski bir versiyonu, Deep Seek,
+
+148
+00:09:05,240 --> 00:09:07,800
+kelimesindeki D harflerini yanlış sayıyordu ya.
+
+149
+00:09:07,840 --> 00:09:10,680
+Evet evet hatırladım, bir yerine iki veya üç diyordu.
+
+150
+00:09:10,680 --> 00:09:11,320
+Aynen.
+
+151
+00:09:11,320 --> 00:09:16,440
+Ama aynı modelin daha gelişmiş bir versiyonu bu hatayı yapmaya doğru sayabiliyor.
+
+152
+00:09:16,440 --> 00:09:20,560
+Bu bize model kapasitesinin ne kadar önemli olduğunu gösteriyor.
+
+153
+00:09:20,560 --> 00:09:22,320
+Hatta şey bile etkili olabiliyor,
+
+154
+00:09:22,320 --> 00:09:25,320
+modern modeller kelimelere harf harf değil de,
+
+155
+00:09:25,320 --> 00:09:28,000
+token dediğimiz daha büyük parçaları ayırıyor ya.
+
+156
+00:09:28,000 --> 00:09:30,520
+Evet, hc gibi veya kelime parçaları gibi.
+
+157
+00:09:30,520 --> 00:09:37,760
+Mesela Deep Seek kelimesini D-E-E-P-S-E-K gibi işliyor olabilir.
+
+158
+00:09:37,760 --> 00:09:42,560
+İşte bu tokenizasyon bile bu tür basit görünen harf sayma gibi görevlerde
+
+159
+00:09:42,560 --> 00:09:45,880
+beklenmedik hatalara yani halüsinasyonlara yol açabiliyor.
+
+160
+00:09:45,880 --> 00:09:51,280
+İlginç, modelin temel işleyiş biçimi bile basit görevlerde sorun çıkarabiliyor yani.
+
+161
+00:09:51,280 --> 00:09:54,560
+Peki başka faktörler var mı kısaca değinilen?
+
+162
+00:09:54,560 --> 00:09:57,880
+Evet, makale birkaç faktörden daha bahsediyor hızlıca.
+
+163
+00:09:58,120 --> 00:10:04,480
+Mesela eğitim verisinin içinde zaten var olan hataların model tarafından öğrenilip tekrarlanması durumu var.
+
+164
+00:10:04,480 --> 00:10:08,440
+Hani şu meşhur çöp girerse çöp çıkar prensibi, Gigo diyorlar ya.
+
+165
+00:10:08,440 --> 00:10:10,160
+Evet, garbiçin garbıçağıt.
+
+166
+00:10:10,160 --> 00:10:10,960
+O var.
+
+167
+00:10:10,960 --> 00:10:16,280
+Ya da modelin eğitimde hiç görmediği türden farklı tarzda sorularla karşılaşması durumu var.
+
+168
+00:10:16,280 --> 00:10:19,200
+Buna dağılım kayması, Distribution Shift deniyor.
+
+169
+00:10:19,200 --> 00:10:25,400
+Veya basitçe cevaplaması hesaplama açısından çok zor, çok karmaşık problemlerle karşılaşması,
+
+170
+00:10:25,400 --> 00:10:27,000
+Computational Hardness.
+
+171
+00:10:27,000 --> 00:10:31,240
+Bunlar da halüsinasyonları tetikleyebilen diğer faktörler olarak sıralanıyor.
+
+172
+00:10:31,240 --> 00:10:32,480
+Anlaşıldı.
+
+173
+00:10:32,480 --> 00:10:38,080
+Şimdi burası bence işin en acayip, en kafa karıştırıcı noktalarından biri.
+
+174
+00:10:38,080 --> 00:10:45,200
+Makale diyor ki ön eğitimden çıkan bu temel modeller genellikle iyi kalibre edilmiş oluyorlar.
+
+175
+00:10:45,200 --> 00:10:46,520
+Yani ne demek bu?
+
+176
+00:10:46,520 --> 00:10:56,840
+Bir olayın olasılığı hakkında %70 gibi bir tahminde bulunduklarında gerçek hayatta da o olay benzer durumlarda yaklaşık %70 oranında gerçekleşiyor.
+
+177
+00:10:57,080 --> 00:10:59,440
+Bu kulağa harika bir şey gibi geliyor değil mi?
+
+178
+00:10:59,440 --> 00:11:01,800
+Modelin tahminleri güvenilir demek.
+
+179
+00:11:01,800 --> 00:11:03,320
+Evet ilk bakışta öyle.
+
+180
+00:11:03,320 --> 00:11:11,680
+Ama sonra makale diyor ki işte tam da bu iyi kalibrasyon hedefi yani modelin olasılıkları doğru tahmin etme çabası,
+
+181
+00:11:11,680 --> 00:11:17,320
+standart eğitim yöntemleri yüzünden çapraz entropi kaybı, cross entropy loss diyorlar,
+
+182
+00:11:17,320 --> 00:11:20,440
+hatalara yani halüsinasyonlara yol açıyor.
+
+183
+00:11:20,440 --> 00:11:22,680
+Hatta tam tersini iddia ediyor.
+
+184
+00:11:22,680 --> 00:11:30,160
+Hiç halüsinasyon üretmeyen, emin olmadığında dürüstçe bilmiyorum IDK, I don't know diyen bir model,
+
+185
+00:11:30,160 --> 00:11:34,280
+bu standartlara göre kötü kalibre edilmiş sayılmak zorunda kalıyor.
+
+186
+00:11:34,280 --> 00:11:36,440
+Bu nasıl bir paradoks yahu?
+
+187
+00:11:36,440 --> 00:11:41,200
+Bu gerçekten de çalışmanın en çarpıcı ve belki de en önemli bulgularından biri.
+
+188
+00:11:41,200 --> 00:11:43,040
+Şöyle açıklamaya çalışayım.
+
+189
+00:11:43,040 --> 00:11:50,240
+Ön eğitim süreci modelin gördüğü o devasa verinin olasılık dağılımını en iyi şekilde temsil etmeye zorluyor.
+
+190
+00:11:50,240 --> 00:11:55,440
+Yani her kelimeden sonra hangi kelimenin gelme olasılığı nedir bunu öğreniyor.
+
+191
+00:11:55,440 --> 00:11:56,440
+Evet.
+
+192
+00:11:56,440 --> 00:12:02,640
+Bu da şu anlama geliyor, model her durumda bir olasılık belirtmeye, bir tahminde bulunmaya itiliyor.
+
+193
+00:12:02,640 --> 00:12:07,200
+Çünkü bilmiyorum demek bu kesintisiz olasılık dağılımına uymuyor.
+
+194
+00:12:07,200 --> 00:12:10,320
+Modelin genel kalibrasyon skorunu düşürüyor.
+
+195
+00:12:10,320 --> 00:12:16,520
+İyi kalibre edilmiş olmak adeta belirsizliğe yer bırakmamayı gerektiriyor gibi bir durum ortaya çıkıyor.
+
+196
+00:12:16,600 --> 00:12:21,800
+Yani bilmiyorum demek sistemin matematiğini bozuyor gibi bir şey mi?
+
+197
+00:12:21,800 --> 00:12:22,800
+Biraz öyle.
+
+198
+00:12:22,800 --> 00:12:25,560
+Model belirsizlikle karşılaştığında bile,
+
+199
+00:12:25,560 --> 00:12:32,320
+istatistiksel olarak en olası görünen ama belki de yanlış olan tahmini yapmak zorunda hissediyor kendini.
+
+200
+00:12:32,320 --> 00:12:36,680
+İşte bu zorunlu tahminler de sık sık halüsinasyon olarak karşımıza çıkıyor.
+
+201
+00:12:36,680 --> 00:12:44,320
+Yani özetle iyi kalibrasyonun bedeli bir miktar kaçınılmaz halüsinasyon oluyor diyebiliriz bu mevcut eğitim hedefleriyle.
+
+202
+00:12:44,520 --> 00:12:45,440
+Vay canına.
+
+203
+00:12:45,440 --> 00:12:47,120
+Bu gerçekten ilginçmiş.
+
+204
+00:12:47,120 --> 00:12:52,880
+Ön eğitimde halüsinasyonların istatistiksel olarak bir nevi kaçınılmaz olduğunu anladık gibi.
+
+205
+00:12:52,880 --> 00:12:56,680
+Peki ama neden bu modelleri daha sonra ince ayarlarla,
+
+206
+00:12:56,680 --> 00:13:02,600
+hani RLHF dediğimiz insan geri bildirimiyle veya DPO gibi yöntemlerle iyileştirirken,
+
+207
+00:13:02,600 --> 00:13:05,320
+bu halüsinasyonları tamamen yok edemiyoruz?
+
+208
+00:13:05,320 --> 00:13:10,080
+Hatta makale bazen bu süreçlerin halüsinasyonları artırabildiğini bile söylüyor.
+
+209
+00:13:10,080 --> 00:13:11,280
+Bu niye oluyor peki?
+
+210
+00:13:11,280 --> 00:13:17,440
+İşte burada işin içine sadece teknik değil, sosyoteknik dediğimiz bir boyut giriyor.
+
+211
+00:13:17,440 --> 00:13:21,400
+Yani sorun sadece modellerin nasıl eğitildiğiyle değil,
+
+212
+00:13:21,400 --> 00:13:25,960
+aynı zamanda bizim onları nasıl değerlendirdiğimizle de çok yakından ilgili.
+
+213
+00:13:25,960 --> 00:13:27,960
+İnsan faktörü de devrede yani.
+
+214
+00:13:27,960 --> 00:13:29,160
+Nasıl yani?
+
+215
+00:13:29,160 --> 00:13:31,800
+Değerlendirme yöntemlerimiz mi sorunlu?
+
+216
+00:13:31,800 --> 00:13:34,680
+Makale burada çok güzel bir benzetme kullanıyor.
+
+217
+00:13:34,680 --> 00:13:39,000
+Okuldaki çoktan seçmeli veya yazılı sınava giren öğrencileri düşünün.
+
+218
+00:13:39,000 --> 00:13:42,800
+Bir sorunun cevabından emin olmadıklarında genellikle ne yaparlar?
+
+219
+00:13:42,800 --> 00:13:48,600
+Çoğu zaman boş bırakmak yerine en iyi tahminlerini yaparlar ya da biraz sallarlar yani.
+
+220
+00:13:48,600 --> 00:13:49,280
+Değil mi?
+
+221
+00:13:49,280 --> 00:13:54,360
+Çünkü boş bırakmak ya da bilmiyorum yazmak genellikle sıfır puan getirir.
+
+222
+00:13:54,360 --> 00:13:57,120
+Ama doğru tahmin edersen puan alırsın.
+
+223
+00:13:57,120 --> 00:13:59,160
+Risk almaya değer yani çoğu zaman.
+
+224
+00:13:59,160 --> 00:14:00,120
+Anlıyorum.
+
+225
+00:14:00,120 --> 00:14:06,480
+Yani yapay zeka modelleri de adeta sürekli bir sınavdaymış gibi mi eğitiliyor ve değerlendiriliyor?
+
+226
+00:14:06,480 --> 00:14:08,480
+Bu yüzden mi onlar da sallıyor?
+
+227
+00:14:08,520 --> 00:14:12,160
+Kesinlikle öyle programlanıyorlar ve değerlendiriliyorlar.
+
+228
+00:14:12,160 --> 00:14:16,760
+Günümüzde yapay zeka modellerinin performansını ölçmek için kullanılan popüler değerlendirme
+
+229
+00:14:16,760 --> 00:14:24,440
+standartlarının yani benchmarkların makalede MLU, GPQA gibi bir sürü isim geçiyor ama
+
+230
+00:14:24,440 --> 00:14:27,040
+isimler çok önemli değil, mantık önemli.
+
+231
+00:14:27,040 --> 00:14:31,440
+Büyük çoğunluğu çok basit bir ikili binary puanlama sistemi kullanıyor.
+
+232
+00:14:31,440 --> 00:14:32,680
+İkili derken?
+
+233
+00:14:32,680 --> 00:14:33,880
+Sıfır ya da bir gibi mi?
+
+234
+00:14:33,880 --> 00:14:34,960
+Aynı öyle.
+
+235
+00:14:34,960 --> 00:14:40,040
+Cevap ya doğrudur, bir puan alır, ya da yanlıştır, sıfır puan alır.
+
+236
+00:14:40,040 --> 00:14:46,520
+Peki model dürüstçe bu konuda emin değilim veya bilmiyorum IDK derse ne oluyor?
+
+237
+00:14:46,520 --> 00:14:51,240
+İşte çoğu benchmarkta bu cevaplar da yanlış kabul ediliyor ve sıfır puan alıyor.
+
+238
+00:14:51,240 --> 00:14:52,240
+Eyvah!
+
+239
+00:14:52,240 --> 00:14:56,840
+Bu durumda bir model aslında cevaptan emin olmasa bile, dürüstçe bilmiyorum demek
+
+240
+00:14:56,840 --> 00:15:02,240
+yerine risk alıp bir tahminde bulunursa, sırf şans eseri doğru cevap verme ihtimali
+
+241
+00:15:02,240 --> 00:15:06,840
+olduğu için bu testlerde genel olarak daha başarılı görünme potansiyeli taşıyor.
+
+242
+00:15:06,840 --> 00:15:07,840
+Tam olarak bu.
+
+243
+00:15:07,840 --> 00:15:09,840
+İşte bu çok kritik bir nokta.
+
+244
+00:15:09,840 --> 00:15:11,840
+İki model düşünelim.
+
+245
+00:15:11,840 --> 00:15:18,840
+Model A son derece dürüst, emin olmadığında net bir şekilde bilmiyorum diyor ve hiç
+
+246
+00:15:18,840 --> 00:15:20,840
+halüsinasyon üretmiyor diyelim.
+
+247
+00:15:20,840 --> 00:15:27,840
+Model B ise benzer yetenekte ama asla bilmiyorum demiyor, her zaman en iyi tahminini yapıyor,
+
+248
+00:15:27,840 --> 00:15:29,240
+arada yanlış da yapsa.
+
+249
+00:15:29,240 --> 00:15:30,240
+Tamam.
+
+250
+00:15:30,240 --> 00:15:35,240
+Bu yaygın sıfır on puanlama sistemlerinde model B'nin sırf sürekli tahmin yürüttüğü
+
+251
+00:15:35,240 --> 00:15:40,240
+için ortalamada model A'dan daha yüksek puan alması çok olası, hatta garantili
+
+252
+00:15:40,240 --> 00:15:41,240
+bile olabilir.
+
+253
+00:15:41,240 --> 00:15:48,240
+Bu durum belirsizliği ve dürüst çekimselliği adeta cezalandıran bir test çözme salgını
+
+254
+00:15:48,240 --> 00:15:50,240
+yaratıyor diyor makale.
+
+255
+00:15:50,240 --> 00:15:53,240
+Test çözme salgını güzel tabirmiş.
+
+256
+00:15:53,240 --> 00:15:56,240
+Evet ve şuna da dikkat çekiyorlar.
+
+257
+00:15:56,240 --> 00:16:02,240
+Sadece halüsinasyonları ölçmek için tasarlanmış birkaç özel test eklemek de temel sorunu
+
+258
+00:16:02,240 --> 00:16:03,240
+çözmüyor.
+
+259
+00:16:03,240 --> 00:16:08,240
+Çünkü modellerin genel başarısını tanımlayan ve onları geliştirmek için kullanılan ana
+
+260
+00:16:08,240 --> 00:16:14,240
+değerlendirme metrikleri hala risk almayı ve tahmin etmeyi dolaylı yoldan teşvik ediyor.
+
+261
+00:16:14,240 --> 00:16:20,240
+Modeller en doğru bilgiyi veren dürüst kaynaklar olmaktan ziyade bu özel testleri en iyi geçen
+
+262
+00:16:20,240 --> 00:16:23,240
+test çözücüler olarak optimize ediliyorlar.
+
+263
+00:16:23,240 --> 00:16:24,240
+Anladım.
+
+264
+00:16:24,240 --> 00:16:29,240
+Modelleri doğru cevap vermeye değil testten yüksek puan almaya itiyor.
+
+265
+00:16:29,240 --> 00:16:32,240
+Bu da halüsinasyonları körüklüyor.
+
+266
+00:16:32,240 --> 00:16:35,240
+Peki bu adeta bir kısır döngü gibi görünüyor.
+
+267
+00:16:35,240 --> 00:16:37,240
+Bunu kırmak için ne yapılabilir?
+
+268
+00:16:37,240 --> 00:16:40,240
+Makalenin somut bir çözüm önerisi var mı bu konuda?
+
+269
+00:16:40,240 --> 00:16:46,240
+Evet var ve bence oldukça mantıklı uygulanabilir bir öneri sunuyorlar.
+
+270
+00:16:46,240 --> 00:16:52,240
+Temel fikir şu sürekli yeni ve daha karmaşık halüsinasyon tespit testleri icat etmeye
+
+271
+00:16:52,240 --> 00:16:57,240
+çalışmak yerine zaten sektörde yaygın olarak kullanılan mevcut ana değerlendirme
+
+272
+00:16:57,240 --> 00:17:00,240
+yöntemlerini temelden değiştirmek gerekiyor.
+
+273
+00:17:00,240 --> 00:17:02,240
+Mevcukları değiştirmek nasıl?
+
+274
+00:17:02,240 --> 00:17:07,240
+Özellikle de bu yöntemlerin belirsizliği ve bilmiyorum demeyi cezalandıran yapısını
+
+275
+00:17:07,240 --> 00:17:10,240
+ortadan kaldırmak şart diyorlar.
+
+276
+00:17:10,240 --> 00:17:14,240
+Peki nasıl olacak bu puanlama sisteminde mi bir değişiklik öneriyorlar?
+
+277
+00:17:14,240 --> 00:17:15,240
+Aynen öyle.
+
+278
+00:17:15,240 --> 00:17:19,240
+Makalenin en somut ve bence en önemli önerisi bu.
+
+279
+00:17:19,240 --> 00:17:24,240
+Bu değerlendirme standartlarının talimatlarına açık güven eşikleri eklemek.
+
+280
+00:17:24,240 --> 00:17:27,240
+Explicit confidence targets diyorlar.
+
+281
+00:17:27,240 --> 00:17:30,240
+Bunu da T harfiyle sembolize ediyorlar.
+
+282
+00:17:30,240 --> 00:17:33,240
+Güven eşiği T ne demek bu tam olarak?
+
+283
+00:17:33,240 --> 00:17:35,240
+Şöyle bir şey öneriyorlar.
+
+284
+00:17:35,240 --> 00:17:39,240
+Her bir değerlendirme sorusuna şöyle bir eknot düşülebilir.
+
+285
+00:17:39,240 --> 00:17:45,240
+Mesela lütfen sadece cevabınızdan yüzde T oranında örneğin yüzde 75 diyelim veya
+
+286
+00:17:45,240 --> 00:17:48,240
+daha fazla eminseniz cevap verin.
+
+287
+00:17:48,240 --> 00:17:49,240
+Tamam.
+
+288
+00:17:49,240 --> 00:17:54,240
+Çünkü bu testte yanlış cevaplar doğru cevaplardan daha fazla cezalandırılacaktır.
+
+289
+00:17:54,240 --> 00:18:02,240
+Yanlış cevap T çarpı 1-T kadar örneğin yüzde 75 eşik için bu 3 puan eder puan
+
+290
+00:18:02,240 --> 00:18:06,240
+düşürürken doğru cevaplar sadece 1 puan kazandırır.
+
+291
+00:18:06,240 --> 00:18:08,240
+Bilmiyorum cevabı ise 0 puandır.
+
+292
+00:18:08,240 --> 00:18:09,240
+Anladım.
+
+293
+00:18:09,240 --> 00:18:11,240
+Bu çok mantıklı geldi şimdi.
+
+294
+00:18:11,240 --> 00:18:17,240
+Yani yanlış cevabın bir bedeli var hem de doğru cevabın getirisinden daha yüksek bir bedeli.
+
+295
+00:18:17,240 --> 00:18:22,240
+Bu durumda model artık körü körüne tahmin yapmanın potansiyel olarak çok maliyetli
+
+296
+00:18:22,240 --> 00:18:24,240
+olabileceğini biliyor.
+
+297
+00:18:24,240 --> 00:18:25,240
+Aynen öyle.
+
+298
+00:18:25,240 --> 00:18:30,240
+Ne zaman risk alıp tahmin etmenin mantıklı olduğuna, ne zaman geri çekilip bilmiyorum
+
+299
+00:18:30,240 --> 00:18:36,240
+demenin daha güvenli olduğuna dair daha bilinçli daha stratejik bir karar verebilir hale geliyor.
+
+300
+00:18:36,240 --> 00:18:37,240
+Tam olarak hedef bu.
+
+301
+00:18:37,240 --> 00:18:41,240
+Makale buna davranışsal kalibrasyon adını veriyor.
+
+302
+00:18:41,240 --> 00:18:47,240
+Yani amaç sadece modelin bir cevabın doğruluğuna dair içsel bir olasılık tahmini yapması değil.
+
+303
+00:18:47,240 --> 00:18:54,240
+Aynı zamanda kendisine talimatlarla belirtilen o risk seviyesine yani yanlış cevap cezasının
+
+304
+00:18:54,240 --> 00:18:58,240
+ne kadar yüksek olduğuna göre en uygun davranışı sergilemesini sağlamak.
+
+305
+00:18:58,240 --> 00:19:02,240
+Yani cevap mı verecek çekimser mi kalacak?
+
+306
+00:19:02,240 --> 00:19:07,240
+Aynen cevap vermek mi yoksa çekimser kalmak mı daha mantıklı bunun kararını o eşiğe
+
+307
+00:19:07,240 --> 00:19:08,240
+göre vermesi bekleniyor.
+
+308
+00:19:08,240 --> 00:19:14,240
+Bu güven eşiğinin t değerinin talimatlarda açıkça belirtilmesi değerlendirme sürecini
+
+309
+00:19:14,240 --> 00:19:16,240
+çok daha şeffaf ve objektif hale getiriyor.
+
+310
+00:19:16,240 --> 00:19:22,240
+Ayrıca farklı modellerin farklı risk tolerans seviyelerinde yani farklı t değerlerinde
+
+311
+00:19:22,240 --> 00:19:25,240
+nasıl performans gösterdiğini karşılaştırmamıza da olanak tanıyor.
+
+312
+00:19:25,240 --> 00:19:27,240
+Bu harika bir fikir aslında.
+
+313
+00:19:27,240 --> 00:19:32,240
+Evet bu yaklaşım yapay zeka geliştiricilerini sadece doğru cevaplar üreten değil aynı
+
+314
+00:19:32,240 --> 00:19:37,240
+zamanda neyi bilip neyi bilmediğinin farkında olan daha dürüst ve dolayısıyla bize daha
+
+315
+00:19:37,240 --> 00:19:40,240
+çok güven veren modeller üretmeye teşvik edebilir diyorlar.
+
+316
+00:19:40,240 --> 00:19:45,240
+Gerçekten de bakış açısını tamamen değiştiren bir yaklaşım bu.
+
+317
+00:19:45,240 --> 00:19:51,240
+O zaman tüm bu konuştuklarımızı şöyle bir toparlayacak olursak yapay zeka halüsinasyonları
+
+318
+00:19:51,240 --> 00:19:57,240
+öyle sandığımız gibi gizemli veya tamamen anlaşılmaz bir hata değil aslında.
+
+319
+00:19:57,240 --> 00:19:59,240
+Evet istatistiksel bir temeli var.
+
+320
+00:19:59,240 --> 00:20:04,240
+Kökleri modellerin ilk eğitildiği o ön eğitim sürecindeki hedeflere ve belirsizlikle
+
+321
+00:20:04,240 --> 00:20:06,240
+başa çıkma şekillerine dayanıyor.
+
+322
+00:20:06,240 --> 00:20:10,240
+Tıpkı diğer makine öğrenmesi sınıflandırma hataları gibi yani.
+
+323
+00:20:10,240 --> 00:20:11,240
+Aynen öyle.
+
+324
+00:20:11,240 --> 00:20:16,240
+Ve maalesef mevcut popüler değerlendirme sistemlerimiz bilmiyorum demek yerine tahmin
+
+325
+00:20:16,240 --> 00:20:22,240
+etmeyi ve risk almayı ödüllendirgi için modeller ince ayarlarla iyileştirildikten
+
+326
+00:20:22,240 --> 00:20:27,240
+sonra bile bu halüsinasyonlar inatla varlıklarını sürdürüyorlar.
+
+327
+00:20:27,240 --> 00:20:28,240
+Çok güzel özetledin.
+
+328
+00:20:28,240 --> 00:20:33,240
+Yani daha güvenilir daha dürüst yapay zeka sistemleri inşa etmenin yolu sadece bu
+
+329
+00:20:33,240 --> 00:20:39,240
+daha büyük daha karmaşık modeller geliştirmekten geçmiyor gibi görünüyor bu analize göre.
+
+330
+00:20:39,240 --> 00:20:41,240
+Evet anlaşılan o.
+
+331
+00:20:41,240 --> 00:20:47,240
+Aynı zamanda belirsizliğin dürüstçe ifade edilmesini cezalandırmayan hatta belki de
+
+332
+00:20:47,240 --> 00:20:52,240
+bunu değerli kılan daha akıllıca değerlendirme sistemleri tasarlamaktan da geçiyor.
+
+333
+00:20:52,240 --> 00:20:57,240
+Teşvik mekanizmalarını doğru bir şekilde yeniden hizalamak belki de halüsinasyon
+
+334
+00:20:57,240 --> 00:21:02,240
+sorununu azaltma yolunda önümüzdeki en büyük engellerden birini kaldırabilir.
+
+335
+00:21:02,240 --> 00:21:07,240
+Bu analiz sorunun hem kökenine hem de potansiyel çözümüne dair gerçekten çok net
+
+336
+00:21:07,240 --> 00:21:10,240
+ve ikna edici bir çerçeve sundu bence.
+
+337
+00:21:10,240 --> 00:21:12,240
+Çok teşekkürler bu derinlemesine bakış için.
+
+338
+00:21:12,240 --> 00:21:13,240
+Ben teşekkür ederim.
+
+339
+00:21:13,240 --> 00:21:20,240
+Bitirmeden önce belki dinleyicilerimizin de üzerinde düşünebileceği kışkırtıcı bir son not bırakabiliriz.
+
+340
+00:21:20,240 --> 00:21:25,240
+Bu makalede önerilen açık güven eşikleri ve yanlış bilginin maliyeti fikri var ya.
+
+341
+00:21:25,240 --> 00:21:26,240
+Evet.
+
+342
+00:21:26,240 --> 00:21:32,240
+Acaba bunu kendi günlük hayatımızdaki bilgi alışverişlerimize nasıl uyarlayabiliriz?
+
+343
+00:21:32,240 --> 00:21:38,240
+Bir dahaki sefere bir arkadaşınızdan, bir uzmandan veya hatta bir haber kaynağından
+
+344
+00:21:38,240 --> 00:21:45,240
+kritik bir bilgi aldığınızda o bilginin doğruluğunda ne kadar emin olmasını beklersiniz acaba?
+
+345
+00:21:45,240 --> 00:21:47,240
+İlginç bir soru.
+
+346
+00:21:47,240 --> 00:21:53,240
+O bilginin yanlış çıkmasının sizin için potansiyel maliyeti ne olurdu ve bu maliyete bağlı olarak
+
+347
+00:21:53,240 --> 00:21:57,240
+karşı taraftan ne düzeyde bir kesinlik ifadesi beklerdiniz?
+
+348
+00:21:57,240 --> 00:22:03,240
+Ya da belki de dürüst bir şu an emin değilim veya bu konuda bilgim yok cevabı duymak
+
+349
+00:22:03,240 --> 00:22:06,240
+sizi aslında daha güvende hissettirirdi.
+
+350
+00:22:06,240 --> 00:22:12,240
+İşte bu tür sorular üzerine biraz kafa yormak, bilgiye ve belirsizliğe kendi yaklaşımımız hakkında
+
+351
+00:22:12,240 --> 00:22:15,240
+ilginç farkındalıklar yaratabilir belki de.
+
